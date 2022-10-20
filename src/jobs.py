@@ -20,10 +20,6 @@ def read(path):
         csv_reader = csv.reader(file, delimiter=",")
         header, *jobs = csv_reader
 
-    result = [
-        {header[i]: job[i] for i in range(len(header))} for job in jobs
-    ]
-
-
+    result = [{header[i]: job[i] for i in range(len(header))} for job in jobs]
 
     return result
