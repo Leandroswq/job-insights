@@ -1,5 +1,5 @@
 from src.jobs import read
-from src.helpers.number import is_number
+from src.helpers.number import is_int
 
 
 def get_unique_job_types(path):
@@ -99,11 +99,7 @@ def get_max_salary(path):
 
     jobs = read(path)
     jobs_max_salaries = set(
-        [
-            int(job["max_salary"])
-            for job in jobs
-            if is_number(job["max_salary"])
-        ]
+        [int(job["max_salary"]) for job in jobs if is_int(job["max_salary"])]
     )
 
     max_salary = max(jobs_max_salaries)
