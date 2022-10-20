@@ -121,7 +121,13 @@ def get_min_salary(path):
     int
         The minimum salary paid out of all job opportunities
     """
-    pass
+    jobs = read(path)
+    jobs_mim_salaries = set(
+        [int(job["min_salary"]) for job in jobs if is_int(job["min_salary"])]
+    )
+
+    min_salary = min(jobs_mim_salaries)
+    return min_salary
 
 
 def matches_salary_range(job, salary):
