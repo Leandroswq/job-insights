@@ -1,4 +1,5 @@
 from src.jobs import read
+from src.helpers.number import is_number
 
 
 def get_unique_job_types(path):
@@ -95,7 +96,18 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    pass
+
+    jobs = read(path)
+    jobs_max_salaries = set(
+        [
+            int(job["max_salary"])
+            for job in jobs
+            if is_number(job["max_salary"])
+        ]
+    )
+
+    max_salary = max(jobs_max_salaries)
+    return max_salary
 
 
 def get_min_salary(path):
