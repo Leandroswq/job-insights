@@ -1,6 +1,6 @@
 def is_int(value):
     try:
         int(value)
-    except ValueError:
+    except Exception:
         return False
     return True

@@ -161,7 +161,38 @@ def matches_salary_range(job, salary):
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    pass
+
+    min_salary = job["min_salary"] if "min_salary" in job else ""
+    max_salary = job["max_salary"] if "max_salary" in job else ""
+
+    print(f"-- salary: {salary}, min {min_salary}, max {max_salary}--")
+
+    if min_salary == "":
+        raise ValueError("min_salary doesn't exists")
+    if max_salary == "":
+        raise ValueError("max_salary doesn't exists")
+    if is_int(min_salary) != True:
+        raise ValueError("min_salary aren't valid integer")
+    if is_int(max_salary) != True:
+        raise ValueError("max_salary aren't valid integer")
+    if not isinstance(salary, int):
+        raise ValueError("salary isn't a valid integer")
+
+    min_salary = int(min_salary)
+    max_salary = int(max_salary)
+
+    if min_salary > max_salary:
+        raise ValueError("min_salary  is greather than max_salary ")
+
+    if min_salary <= salary <= max_salary:
+        response = True
+    else:
+        response = False
+
+    print(
+        f"== salary: {salary}, min {min_salary}, max {max_salary}, response {response} =="
+    )
+    return response
 
 
 def filter_by_salary_range(jobs, salary):
