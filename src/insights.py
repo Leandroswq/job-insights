@@ -1,5 +1,5 @@
 from src.jobs import read
-from src.helpers.number import is_int
+from src.helpers.number import is_in_int_format
 
 
 def get_unique_job_types(path):
@@ -107,7 +107,11 @@ def get_max_salary(path):
 
     jobs = read(path)
     jobs_max_salaries = set(
-        [int(job["max_salary"]) for job in jobs if is_int(job["max_salary"])]
+        [
+            int(job["max_salary"])
+            for job in jobs
+            if is_in_int_format(job["max_salary"])
+        ]
     )
 
     max_salary = max(jobs_max_salaries)
@@ -131,7 +135,11 @@ def get_min_salary(path):
     """
     jobs = read(path)
     jobs_mim_salaries = set(
-        [int(job["min_salary"]) for job in jobs if is_int(job["min_salary"])]
+        [
+            int(job["min_salary"])
+            for job in jobs
+            if is_in_int_format(job["min_salary"])
+        ]
     )
 
     min_salary = min(jobs_mim_salaries)
@@ -171,9 +179,9 @@ def matches_salary_range(job, salary):
         raise ValueError("min_salary doesn't exists")
     if max_salary == "":
         raise ValueError("max_salary doesn't exists")
-    if is_int(min_salary) != True:
+    if is_in_int_format(min_salary) != True:
         raise ValueError("min_salary aren't valid integer")
-    if is_int(max_salary) != True:
+    if is_in_int_format(max_salary) != True:
         raise ValueError("max_salary aren't valid integer")
     if not isinstance(salary, int):
         raise ValueError("salary isn't a valid integer")

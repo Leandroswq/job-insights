@@ -1,4 +1,4 @@
-def is_int(value):
+def is_in_int_format(value):
     try:
         int(value)
     except Exception:
