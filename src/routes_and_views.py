@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, render_template, request, send_file
 
-from .jobs import read
-from .insights import (
+from src.jobs import read
+from src.insights import (
     get_unique_industries,
     get_unique_job_types,
     filter_by_salary_range,
@@ -11,7 +11,7 @@ from .insights import (
     get_max_salary,
 )
 
-from .more_insights import (
+from src.more_insights import (
     slice_jobs,
     get_int_from_args,
     build_jobs_urls,
@@ -72,6 +72,15 @@ def list_jobs():
     }
 
     return render_template("list_jobs.jinja2", ctx=ctx)
+
+
+@bp.route("/job/<index>")
+def job(index):
+    page_id = int(index)
+
+    jobs = read(path="src/jobs.csv")
+
+    return render_template("job.jinja2", job=jobs[page_id])
 
 
 def init_app(app: Flask):
