@@ -146,6 +146,13 @@ def get_min_salary(path):
     return min_salary
 
 
+def verify_salary_format(salary, salary_key):
+    if salary == "":
+        raise ValueError(f"{salary_key} doesn't exists")
+    if not is_in_int_format(salary):
+        raise ValueError("{salary_key} aren't valid integer")
+
+
 def matches_salary_range(job, salary):
     """Checks if a given salary is in the salary range of a given job
 
@@ -173,16 +180,9 @@ def matches_salary_range(job, salary):
     min_salary = job["min_salary"] if "min_salary" in job else ""
     max_salary = job["max_salary"] if "max_salary" in job else ""
 
-    print(f"-- salary: {salary}, min {min_salary}, max {max_salary}--")
+    verify_salary_format(min_salary, "min_salary")
+    verify_salary_format(max_salary, "max_salary")
 
-    if min_salary == "":
-        raise ValueError("min_salary doesn't exists")
-    if max_salary == "":
-        raise ValueError("max_salary doesn't exists")
-    if is_in_int_format(min_salary) != True:
-        raise ValueError("min_salary aren't valid integer")
-    if is_in_int_format(max_salary) != True:
-        raise ValueError("max_salary aren't valid integer")
     if not isinstance(salary, int):
         raise ValueError("salary isn't a valid integer")
 
@@ -197,9 +197,6 @@ def matches_salary_range(job, salary):
     else:
         response = False
 
-    print(
-        f"== salary: {salary}, min {min_salary}, max {max_salary}, response {response} =="
-    )
     return response
 
 
@@ -218,4 +215,5 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
+
     return []
