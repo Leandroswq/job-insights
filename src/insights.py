@@ -200,7 +200,7 @@ def matches_salary_range(job, salary):
     return response
 
 
-def filter_by_salary_range(jobs, salary, ind):
+def filter_by_salary_range(jobs, salary):
     """Filters a list of jobs by salary range
 
     Parameters
