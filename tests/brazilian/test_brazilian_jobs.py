@@ -6,10 +6,10 @@ def test_brazilian_jobs():
     jobs = read_brazilian_file(path)
     job_keys = [key for key in jobs[0].keys()]
     job_keys.sort()
-    
+
     valid_keys = ["title", "salary", "type"]
     valid_keys.sort()
-    
+
     is_valid_array = [
         False
         for key_index in range(len(valid_keys))
